@@ -1,26 +1,28 @@
+
 export enum Category {
   BIKES = 'Motorcycles',
   PARTS = 'Parts',
   ACCESSORIES = 'Accessories'
 }
 
-export enum Brand {
-  HONDA = 'Honda',
-  YAMAHA = 'Yamaha',
-  KTM = 'KTM',
-  DUCATI = 'Ducati',
-  BMW = 'BMW',
-  KAWASAKI = 'Kawasaki',
-  DAYTONA = 'Daytona',
-  BOXER = 'Boxer',
-  GENERIC = 'Aftermarket'
-}
+// Helper object for default brands, but type is string
+export const Brand = {
+  HONDA: 'Honda',
+  YAMAHA: 'Yamaha',
+  KTM: 'KTM',
+  DUCATI: 'Ducati',
+  BMW: 'BMW',
+  KAWASAKI: 'Kawasaki',
+  DAYTONA: 'Daytona',
+  BOXER: 'Boxer',
+  GENERIC: 'Aftermarket'
+} as const;
 
 export interface Product {
   id: string;
   name: string;
-  brand: Brand;
-  category: Category;
+  brand: string; // Changed from enum to string for flexibility
+  category: Category | string;
   price: number;
   image: string;
   description: string;
@@ -33,12 +35,6 @@ export interface Product {
 
 export interface CartItem extends Product {
   quantity: number;
-}
-
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-  timestamp: number;
 }
 
 export interface Order {
